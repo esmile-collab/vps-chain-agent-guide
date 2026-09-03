@@ -18,13 +18,25 @@
 
 ## 你需要准备
 
-- 一台 Windows 电脑。
+- 一台 Mac 或 Windows 电脑。手机和平板只负责使用节点，部署仍在电脑上完成。
 - 一个可以运行 Claude Code、Codex 等 Agent 的环境。
 - 一个 VPS 账号和付款方式（可从 [`docs/providers.md`](docs/providers.md) 选择）。
 - 如果选择链式方案：一个支持认证 SOCKS5 的固定出口账号和付款方式。
-- 如果使用 iPhone 或 Mac：自己的 Apple ID。
+- 如果使用 iPhone/iPad 客户端：自己的 Apple ID。
 
 ## 开始使用
+
+### Mac
+
+打开“终端”，运行：
+
+```bash
+git clone https://github.com/esmile-collab/vps-chain-agent-guide.git
+cd vps-chain-agent-guide
+claude
+```
+
+### Windows
 
 在 PowerShell 中运行：
 
@@ -41,7 +53,7 @@ claude
 我不懂服务器，每次只问我一个问题。购买、付款、输入密码、重装、改防火墙、关闭密码登录、重启和开启全局代理前，先告诉我影响并等我确认。密码只让我在网页或终端的隐藏输入框里输入。先验证已选入口直连；只有选择链式方案时才接入出口，全部测试通过后再说完成。
 ```
 
-如果电脑还没有 Agent，先安装官方 Claude Code 或 Codex；不要从陌生网盘下载客户端。
+如果电脑还没有 Agent，先看 [`docs/get-an-agent.md`](docs/get-an-agent.md)。只从官方页面安装；部署需要 Agent 能读取本地仓库、运行终端命令并在关键步骤等待确认。
 
 ## 你亲自完成的事
 
@@ -49,7 +61,7 @@ claude
 2. 选择并付款购买 VPS；确认地区、账期、流量和续费方式。
 3. 如果使用链式方案，确认出口是固定 IP、目标国家、支持 SOCKS5 和认证。
 4. 在网页或终端提示中亲自输入密码。
-5. 安装 Windows 客户端；Apple 设备从官方 App Store 安装客户端。
+5. 按设备安装客户端：Windows 和 Mac 使用 v2rayN；iPhone/iPad 使用 Shadowrocket 或其他官方来源客户端。
 6. 最后亲自测试网页、电脑和手机。
 
 其他步骤由 Agent 完成。
@@ -59,7 +71,7 @@ claude
 - 只从供应商官网进入购买页，不使用陌生代理转售链接。
 - 付款前让 Agent 核对当天的产品、价格、有效期、续费、退款和地区限制。
 - 部署后按 [`docs/testing.md`](docs/testing.md) 检查出口国家/ASN、DNS、IPv6、WebRTC、延迟、丢包和速度。
-- Windows 客户端使用 [v2rayN 官方发布页](https://github.com/2dust/v2rayN/releases)。
+- Windows 和 Mac 客户端使用 [v2rayN 官方发布页](https://github.com/2dust/v2rayN/releases)；官方项目明确支持 Windows、Linux 和 macOS。
 - Apple 客户端使用 [Shadowrocket 官方 App Store 页面](https://apps.apple.com/us/app/shadowrocket/id932747118)。
 
 ## 请保管好

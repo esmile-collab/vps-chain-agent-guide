@@ -7,7 +7,7 @@ Restore the last known-good layer, collect evidence, then change one variable.
 | Symptom | Check | Safe action |
 |---|---|---|
 | Agent refuses before connecting | Model policy and unofficial gateway | Run the willingness check; switch to a compatible model |
-| Commands are not available | Windows version, Git, SSH, Agent tool permission | Install from official sources; keep manual permissions |
+| Commands are not available | OS version, Git, SSH, Agent tool permission | Install from official sources; keep manual permissions |
 | Secret appears in output | Shell history, logs, screenshots, Git status | Stop, rotate the secret, remove local traces, then clean history if committed |
 
 ## Layer 2: SSH and VPS

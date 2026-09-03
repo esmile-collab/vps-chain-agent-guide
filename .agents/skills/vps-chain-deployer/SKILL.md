@@ -46,7 +46,7 @@ Stop out-of-scope capability work. You may still help shut down services, revoke
 - Generate QR codes locally and store them outside the repository.
 - If any credential appeared publicly, rotate it before continuing.
 
-Read [references/intake-and-gates.md](references/intake-and-gates.md) before collecting inputs or asking for approval. Read [references/plan-selector.md](references/plan-selector.md) before recommending a provider or topology.
+Read [references/agent-bootstrap.md](references/agent-bootstrap.md) and [references/intake-and-gates.md](references/intake-and-gates.md) before collecting inputs or asking for approval. Read [references/plan-selector.md](references/plan-selector.md) before recommending a provider or topology.
 
 ## Workflow
 
@@ -54,9 +54,10 @@ Read [references/intake-and-gates.md](references/intake-and-gates.md) before col
 
 1. Create a private local working directory outside the public repository for logs and generated credentials.
 2. Copy the non-secret project brief and execution-record templates.
-3. Ask one question at a time about location/ISP, target country, fixed-IP need, devices, UDP need, traffic volume, maintenance tolerance, budget, and billing preference.
-4. Compare direct VPS, entry-plus-static-SOCKS5/ISP, two-VPS, and backup-entry paths. Read [references/plan-selector.md](references/plan-selector.md) and [references/provider-matrix.md](references/provider-matrix.md). Give one recommended plan and one fallback; do not force a chain.
-5. If the Agent uses an unofficial model gateway, run the capability and willingness check in the intake reference before connecting to a server.
+3. Verify the local Agent can read this repository, run terminal commands, and use SSH. If the user has no Agent, pause and provide [docs/get-an-agent.md](../../../docs/get-an-agent.md).
+4. Ask one question at a time about location/ISP, target country, fixed-IP need, devices, UDP need, traffic volume, maintenance tolerance, budget, and billing preference.
+5. Compare direct VPS, entry-plus-static-SOCKS5/ISP, two-VPS, and backup-entry paths. Read [references/plan-selector.md](references/plan-selector.md) and [references/provider-matrix.md](references/provider-matrix.md). Give one recommended plan and one fallback; do not force a chain.
+6. If the Agent uses an unofficial model gateway, run the capability and willingness check in the intake reference before connecting to a server.
 
 ### Stage 1: compare and purchase the VPS
 
@@ -109,7 +110,7 @@ Read [references/deployment-runbook.md](references/deployment-runbook.md) before
 
 Read [references/client-and-acceptance.md](references/client-and-acceptance.md).
 
-- Windows: use the official `2dust/v2rayN` release and import the local VLESS share link.
+- Windows and macOS: use the official `2dust/v2rayN` release and import the local VLESS share link. Choose the release asset matching x64 or arm64.
 - Apple: use the user's own Apple ID and the App Store listing with ID `932747118`; import with a locally generated QR code.
 - Start with the system proxy or normal proxy mode. Enable TUN only for a verified need and after user approval.
 

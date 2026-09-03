@@ -1,6 +1,6 @@
 # Client setup and acceptance
 
-## Windows with v2rayN
+## Windows or macOS with v2rayN
 
 Official source:
 

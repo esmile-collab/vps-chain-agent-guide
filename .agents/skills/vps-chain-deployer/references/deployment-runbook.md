@@ -4,7 +4,13 @@
 
 Create a private deployment workspace outside the cloned public repository. Generated configs, links, QR codes, logs, backups, and temporary credential files stay there. Use restrictive permissions.
 
-On Windows, generate a dedicated SSH key:
+On macOS/Linux, generate a dedicated SSH key:
+
+```bash
+ssh-keygen -t ed25519 -a 64 -f "$HOME/.ssh/vps_chain_ed25519"
+```
+
+On Windows PowerShell:
 
 ```powershell
 ssh-keygen -t ed25519 -a 64 -f "$env:USERPROFILE\.ssh\vps_chain_ed25519"
@@ -43,6 +49,12 @@ On SELinux systems, restore the context. Open a second terminal and test:
 
 ```powershell
 ssh -i "$env:USERPROFILE\.ssh\vps_chain_ed25519" root@<VPS_IP>
+```
+
+On macOS/Linux:
+
+```bash
+ssh -i "$HOME/.ssh/vps_chain_ed25519" root@<VPS_IP>
 ```
 
 Keep the first session open. Verify the provider's emergency recovery console (KiwiVM for BandwagonHost). Back up the SSH configuration, apply the approved authentication policy, run `sshd -t`, reload SSH, then prove:
