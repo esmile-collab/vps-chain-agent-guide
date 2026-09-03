@@ -78,3 +78,7 @@ claude
 密码、SSH 私钥、完整节点链接、Reality 私钥、美国代理账号和二维码都不要发到聊天、截图、公共网站或 GitHub。
 
 详细技术步骤由 `.agents/skills/vps-chain-deployer/` 提供，Agent 会按需读取。用户要看的最短流程见 [`docs/human-steps.md`](docs/human-steps.md)。
+
+## 许可证
+
+本仓库自有代码、Skill 和文档采用 [MIT License](LICENSE)。引用的第三方项目、客户端和服务仍遵循各自许可证与服务条款。
