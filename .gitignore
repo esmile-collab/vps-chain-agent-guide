@@ -1,0 +1,14 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+*.log
+*.pem
+*.key
+*.crt
+*.p12
+*.mobileconfig
+secrets/
+private/
+artifacts/
+
