@@ -23,6 +23,8 @@
 - 如果选择链式方案：一个支持认证 SOCKS5 的固定出口账号和付款方式。
 - 如果使用 iPhone/iPad 客户端：自己的 Apple ID。
 
+安全风险和出问题后的回退方式见 [`docs/security.md`](docs/security.md)；各设备客户端见 [`docs/clients.md`](docs/clients.md)。
+
 ## 开始使用
 
 ### Mac
@@ -70,6 +72,8 @@ claude
 - 只从供应商官网进入购买页，不使用陌生代理转售链接。
 - 付款前让 Agent 核对当天的产品、价格、有效期、续费、退款和地区限制。
 - 部署后按 [`docs/testing.md`](docs/testing.md) 检查出口国家/ASN、DNS、IPv6、WebRTC、延迟、丢包和速度。
+- Agent 会在第三方安装、SSH、防火墙、重启和全局代理前说明风险并等你确认；安全检查和回退步骤见 [`docs/security.md`](docs/security.md)。
+- 客户端导入和手机 VPN 权限按 [`docs/clients.md`](docs/clients.md) 执行。
 - Windows 和 Mac 客户端使用 [v2rayN 官方发布页](https://github.com/2dust/v2rayN/releases)；官方项目明确支持 Windows、Linux 和 macOS。
 - Apple 客户端使用 [Shadowrocket 官方 App Store 页面](https://apps.apple.com/us/app/shadowrocket/id932747118)。
 

@@ -11,4 +11,5 @@
 secrets/
 private/
 artifacts/
-
+qr/
+*.qr.png

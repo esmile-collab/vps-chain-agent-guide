@@ -46,7 +46,7 @@ Stop out-of-scope capability work. You may still help shut down services, revoke
 - Generate QR codes locally and store them outside the repository.
 - If any credential appeared publicly, rotate it before continuing.
 
-Read [references/agent-bootstrap.md](references/agent-bootstrap.md) and [references/intake-and-gates.md](references/intake-and-gates.md) before collecting inputs or asking for approval. Read [references/plan-selector.md](references/plan-selector.md) before recommending a provider or topology.
+Read [references/agent-bootstrap.md](references/agent-bootstrap.md), [references/intake-and-gates.md](references/intake-and-gates.md), and [references/security-playbook.md](references/security-playbook.md) before collecting inputs or asking for approval. Read [references/plan-selector.md](references/plan-selector.md) before recommending a provider or topology.
 
 ## Workflow
 
@@ -75,8 +75,9 @@ Read [references/agent-bootstrap.md](references/agent-bootstrap.md) and [referen
 4. Create a dedicated Ed25519 SSH key on the user's device. Keep the private key local.
 5. Add the public key and verify a second SSH session while the first session stays open.
 6. Change SSH authentication only after the key and KiwiVM recovery path both work.
+7. Run `bash scripts/security_postcheck.sh` and review the findings before proceeding.
 
-Read [references/deployment-runbook.md](references/deployment-runbook.md) before any server mutation.
+Read [references/deployment-runbook.md](references/deployment-runbook.md) and [references/security-playbook.md](references/security-playbook.md) before any server mutation.
 
 ### Stage 3: deploy Reality
 
@@ -87,6 +88,7 @@ Read [references/deployment-runbook.md](references/deployment-runbook.md) before
 5. Generate fresh UUID, Reality keys, short ID, target, and share link. Never reuse repository examples or historical credentials.
 6. Verify configuration syntax, service status, startup behavior, and listening port.
 7. Import the node on one client and prove the exit is the selected entry VPS before adding any optional exit.
+8. Run `bash scripts/security_postcheck.sh` and review every public listener before continuing.
 
 ### Stage 4: purchase and test an optional exit
 
@@ -108,15 +110,16 @@ Read [references/deployment-runbook.md](references/deployment-runbook.md) before
 
 ### Stage 6: configure clients
 
-Read [references/client-and-acceptance.md](references/client-and-acceptance.md).
+Read [references/client-and-acceptance.md](references/client-and-acceptance.md) and the user-facing [docs/clients.md](../../../docs/clients.md).
 
 - Windows and macOS: use the official `2dust/v2rayN` release and import the local VLESS share link. Choose the release asset matching x64 or arm64.
-- Apple: use the user's own Apple ID and the App Store listing with ID `932747118`; import with a locally generated QR code.
+- Android: use the official `2dust/v2rayNG` release or a verified Hiddify release; import with a locally generated QR code and grant VPN permission.
+- iPhone/iPad: use the user's own Apple ID and the Shadowrocket App Store listing with ID `932747118`, or a verified Hiddify store listing; import with a locally generated QR code.
 - Start with the system proxy or normal proxy mode. Enable TUN only for a verified need and after user approval.
 
 ### Stage 7: accept and hand off
 
-1. Run every acceptance check in the client reference and [references/network-testing.md](references/network-testing.md).
+1. Run every acceptance check in the client reference, [references/network-testing.md](references/network-testing.md), and the security postcheck.
 2. Reboot the VPS once with user approval, then repeat SSH, service, entry, and optional-exit checks that apply to the selected topology.
 3. Fill the non-secret execution record, renewal dates, restore path, pinned commit, hashes, versions, and remaining limits.
 4. Store generated credentials in the user's password manager or encrypted storage.

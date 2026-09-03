@@ -36,6 +36,14 @@ Copy `scripts/server_preflight.sh` to the VPS or run its commands individually. 
 
 Existing data or unknown listeners create a stop condition. Explain what was found and ask whether to preserve, migrate, or use another empty VPS.
 
+After the preflight and again after deployment, run the read-only security check:
+
+```bash
+bash scripts/security_postcheck.sh
+```
+
+Review the complete listener list and SSH settings with the user. The check reports findings; it does not automatically change the firewall or authentication policy.
+
 ## 3. SSH key and recovery
 
 Append only the `.pub` key to `/root/.ssh/authorized_keys`. Required modes:
@@ -88,7 +96,7 @@ sha256sum /root/v2ray-agent-install.sh
 
 Inspect the script and any scripts it downloads. At minimum search for download hosts, `systemctl`, package managers, firewall changes, cron or timers, SSH changes, destructive removal, telemetry, and uninstall behavior. Compare the current supported OS list with the VPS.
 
-Do not use `--no-check-certificate`. Present the commit, file hash, system impact, and restore plan. Wait for approval before running:
+Do not use `--no-check-certificate` or execute an unreviewed `curl | bash` pipeline. Present the commit, file hash, system impact, and restore plan. Wait for approval before running:
 
 ```bash
 bash /root/v2ray-agent-install.sh
@@ -129,14 +137,14 @@ Use the installed Xray help output to choose its supported configuration-test fl
 
 Do not print configuration files containing private keys or UUIDs into chat or logs.
 
-## 7. Japan direct gate
+## 7. Entry direct gate
 
 Before SOCKS5 routing:
 
 1. Generate the VLESS share URI locally or copy it through a protected channel.
 2. Import it into one client.
 3. Confirm a normal website loads.
-4. Use two independent IP-check services and confirm the visible exit matches the Japan VPS.
+4. Use two independent IP-check services and confirm the visible exit matches the selected entry VPS.
 5. Record only a masked IP and pass/fail result.
 
 Stop and repair Reality when this gate fails.
@@ -177,8 +185,10 @@ Validate syntax before reloading. After reload, confirm:
 - two IP-check services show the exact purchased US IP;
 - DNS and required applications behave as expected.
 
-On failure, restore the newest known-good backup and prove the Japan direct gate again.
+Run `bash scripts/security_postcheck.sh` again and record any changed listener, SSH, or configuration-permission result.
+
+On failure, restore the newest known-good backup and prove the entry direct gate again.
 
 ## 10. Reboot gate
 
-After all client tests pass, ask for approval to reboot. Verify SSH key login, Xray active/enabled, listening port, client connection, and US exit again. A service that only works before reboot is not accepted.
+After all client tests pass, ask for approval to reboot. Verify SSH key login, Xray active/enabled, listening port, client connection, and the selected exit again. A service that only works before reboot is not accepted.

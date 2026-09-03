@@ -14,10 +14,35 @@ https://github.com/2dust/v2rayN/releases
 3. Extract it to a stable folder; do not run the executable inside the archive.
 4. Copy the protected `vless://` URI locally and import it from the clipboard.
 5. Name the profile with the entry and exit, for example `Tokyo-REALITY-direct` or `Tokyo-REALITY-US`, select it, and enable the system proxy.
-6. Test browser access and the exact US exit IP.
+6. Test browser access and the selected exit IP.
 7. Test one non-browser application the user actually needs.
 
 Start with the system proxy. TUN needs administrator permission and can change routing for all applications. Enable it only after a specific application fails to follow the system proxy and the user approves.
+
+## Android with v2rayNG
+
+Official source:
+
+```text
+https://github.com/2dust/v2rayNG
+https://github.com/2dust/v2rayNG/releases
+```
+
+1. Verify the release is from the official repository and choose the device architecture when the release offers choices.
+2. Import the local `vless://` URI or scan a QR code shown on the user's own computer.
+3. Allow Android to create a VPN connection, select the profile, and start the connection.
+4. Test IP and DNS on Wi-Fi and mobile data. Test per-app mode only after the global test passes.
+
+## Cross-platform fallback with Hiddify
+
+Official source:
+
+```text
+https://github.com/hiddify/hiddify-app
+https://github.com/hiddify/hiddify-app/releases
+```
+
+Hiddify publishes clients for Android, iOS, Windows, macOS, and Linux and lists VLESS/Reality support. Use it when the primary client is unavailable, then test the exact Reality link on the user's device. Do not import unknown remote subscriptions or enable automatic profile updates without user approval.
 
 ## Apple devices with Shadowrocket
 
@@ -52,6 +77,7 @@ The VLESS URI grants access. Never send it to a QR web service. Use a locally in
 - [ ] Xray is active and enabled.
 - [ ] Expected port is owned by Xray.
 - [ ] No unauthenticated SOCKS5 inbound is exposed.
+- [ ] Read-only security postcheck was reviewed and unexpected listeners were resolved.
 - [ ] Reboot recovery passes.
 
 ### Network path
@@ -68,9 +94,12 @@ The VLESS URI grants access. Never send it to a QR web service. Use a locally in
 
 - [ ] Windows browser works.
 - [ ] One required Windows desktop application works.
+- [ ] Android works over Wi-Fi, when applicable.
+- [ ] Android works over mobile data, when applicable.
 - [ ] iPhone on Wi-Fi works, when applicable.
 - [ ] iPhone on cellular works, when applicable.
 - [ ] Mac works, when applicable.
+- [ ] Linux works, when applicable.
 
 ### Handoff
 
