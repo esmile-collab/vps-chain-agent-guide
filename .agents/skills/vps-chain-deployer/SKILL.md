@@ -55,8 +55,8 @@ Read [references/agent-bootstrap.md](references/agent-bootstrap.md) and [referen
 1. Create a private local working directory outside the public repository for logs and generated credentials.
 2. Copy the non-secret project brief and execution-record templates.
 3. Verify the local Agent can read this repository, run terminal commands, and use SSH. If the user has no Agent, pause and provide [docs/get-an-agent.md](../../../docs/get-an-agent.md).
-4. Ask one question at a time about location/ISP, target country, fixed-IP need, devices, UDP need, traffic volume, maintenance tolerance, budget, and billing preference.
-5. Compare direct VPS, entry-plus-static-SOCKS5/ISP, two-VPS, and backup-entry paths. Read [references/plan-selector.md](references/plan-selector.md) and [references/provider-matrix.md](references/provider-matrix.md). Give one recommended plan and one fallback; do not force a chain.
+4. Ask one question at a time in this order: monthly budget, biggest worry (outage or slowness), normal activities, target country/fixed-IP need, devices, maintenance tolerance, and location/ISP. Use everyday language; the user can answer “I don't know.”
+5. Research current provider pages and measurable route quality after collecting the needs. Read [references/plan-selector.md](references/plan-selector.md) and [references/provider-matrix.md](references/provider-matrix.md). Give one recommended plan and one fallback with sources, date, cost, limits, and the user's own actions; do not force a chain.
 6. If the Agent uses an unofficial model gateway, run the capability and willingness check in the intake reference before connecting to a server.
 
 ### Stage 1: compare and purchase the VPS
@@ -86,7 +86,7 @@ Read [references/deployment-runbook.md](references/deployment-runbook.md) before
 4. Install only Xray-core with the menu option whose current label means no-domain Reality.
 5. Generate fresh UUID, Reality keys, short ID, target, and share link. Never reuse repository examples or historical credentials.
 6. Verify configuration syntax, service status, startup behavior, and listening port.
-7. Import the node on one client and prove the exit is the Japan VPS before adding the US exit.
+7. Import the node on one client and prove the exit is the selected entry VPS before adding any optional exit.
 
 ### Stage 4: purchase and test an optional exit
 
@@ -117,7 +117,7 @@ Read [references/client-and-acceptance.md](references/client-and-acceptance.md).
 ### Stage 7: accept and hand off
 
 1. Run every acceptance check in the client reference and [references/network-testing.md](references/network-testing.md).
-2. Reboot the VPS once with user approval, then repeat SSH, service, Japan-entry, and US-exit checks.
+2. Reboot the VPS once with user approval, then repeat SSH, service, entry, and optional-exit checks that apply to the selected topology.
 3. Fill the non-secret execution record, renewal dates, restore path, pinned commit, hashes, versions, and remaining limits.
 4. Store generated credentials in the user's password manager or encrypted storage.
 5. Scan the repository and work log for secrets before any commit or share.
