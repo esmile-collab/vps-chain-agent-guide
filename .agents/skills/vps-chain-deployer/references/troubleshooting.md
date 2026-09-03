@@ -14,10 +14,10 @@ Restore the last known-good layer, collect evidence, then change one variable.
 
 | Symptom | Check | Safe action |
 |---|---|---|
-| Port 22 times out | VPS power, IPv4, provider console, local network | Verify through KiwiVM; do not reinstall repeatedly |
+| Port 22 times out | VPS power, IPv4, provider console, local network | Verify through the provider console; do not reinstall repeatedly |
 | Host-key warning after a known rebuild | Provider console and recorded fingerprint | Accept only after confirming the expected IP or rebuild |
 | Key login fails | `authorized_keys`, permissions, SELinux context, SSH logs | Keep the working password session open |
-| Locked out after SSH change | KiwiVM emergency console | Restore backed-up SSH configuration |
+| Locked out after SSH change | Provider emergency console | Restore backed-up SSH configuration |
 | Existing ports or services found | Process owner, containers, packages, user data | Stop and ask whether to preserve or use an empty VPS |
 
 ## Layer 3: Reality inbound
@@ -62,4 +62,3 @@ Restore the last known-good layer, collect evidence, then change one variable.
 2. Restore the latest root-only `/etc/v2ray-agent` backup.
 3. Restore the provider snapshot if one was created and its age is understood.
 4. Reinstall only on a confirmed empty VPS with user approval and a tested emergency console.
-

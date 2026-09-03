@@ -45,7 +45,7 @@ On SELinux systems, restore the context. Open a second terminal and test:
 ssh -i "$env:USERPROFILE\.ssh\vps_chain_ed25519" root@<VPS_IP>
 ```
 
-Keep the first session open. Verify KiwiVM emergency console access. Back up the SSH configuration, apply the approved authentication policy, run `sshd -t`, reload SSH, then prove:
+Keep the first session open. Verify the provider's emergency recovery console (KiwiVM for BandwagonHost). Back up the SSH configuration, apply the approved authentication policy, run `sshd -t`, reload SSH, then prove:
 
 - key login succeeds;
 - password authentication is rejected;
@@ -170,4 +170,3 @@ On failure, restore the newest known-good backup and prove the Japan direct gate
 ## 10. Reboot gate
 
 After all client tests pass, ask for approval to reboot. Verify SSH key login, Xray active/enabled, listening port, client connection, and US exit again. A service that only works before reboot is not accepted.
-

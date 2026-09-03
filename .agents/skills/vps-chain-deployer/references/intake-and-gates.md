@@ -7,10 +7,12 @@ Ask one question, wait for the answer, record only non-secret facts, then contin
 1. `这台 VPS、出口代理和客户端设备是否都由你本人拥有，或由所有者明确授权你管理？`
 2. `你所在的国家或地区是什么？你的用途是什么？`
 3. `你要配置哪些设备：Windows、iPhone、Mac，还是其他设备？`
-4. `你是否确实需要长期固定的美国出口 IP？`
-5. `你的月预算、季度或年付偏好是什么？`
-6. `VPS 是否已经购买？如果已购买，只给我机房、系统和打码后的 IP，不要给密码。`
-7. `你是否已经打开 cliproxy.com，并确认要买的产品是长期静态、美国、支持 SOCKS5？`
+4. `你最看重速度、稳定、固定国家 IP、低维护、低成本中的哪两项？`
+5. `你是否需要长期固定的某个国家出口 IP？如果需要，是否接受额外一跳？`
+6. `是否需要 UDP/QUIC、游戏或视频会议？`
+7. `你的月预算、季度或年付偏好是什么？`
+8. `VPS 是否已经购买？如果已购买，只给我机房、系统和打码后的 IP，不要给密码。`
+9. `如果选择固定出口，你准备使用哪家供应商？只给我官网域名和产品字段，不要给账号密码。`
 
 Stop if ownership, authority, purpose, or vendor identity remains materially unclear.
 

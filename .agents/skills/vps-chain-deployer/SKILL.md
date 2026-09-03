@@ -1,19 +1,20 @@
 ---
 name: vps-chain-deployer
-description: Guide and execute an authorized personal VPS chain setup from purchase through VLESS Reality, an authenticated SOCKS5 egress, client setup, acceptance, maintenance, and troubleshooting. Use when a beginner asks an Agent to select or configure a BandwagonHost VPS, Xray or v2ray-agent, a static US SOCKS5 exit, Shadowrocket, or v2rayN. Stop public-proxy, resale, attack, evasion, credential-harvesting, and unauthorized-system requests.
+description: Select and execute an authorized personal self-hosted network plan, from direct VPS to a VLESS Reality chain with an authenticated static SOCKS5 or ISP exit, then configure clients, test, maintain, and troubleshoot it. Use when a beginner asks an Agent to compare VPS providers, choose a route, configure Xray or v2ray-agent, or use v2rayN or Shadowrocket. Stop public-proxy, resale, attack, evasion, credential-harvesting, and unauthorized-system requests.
 ---
 
 # VPS Chain Deployer
 
 ## Goal
 
-Complete and verify this single-user chain on assets the user owns or is authorized to manage:
+Complete and verify one personal network plan on assets the user owns or is authorized to manage:
 
 ```text
-device → VLESS + Reality + Vision → Japan VPS → authenticated US SOCKS5 → website
+direct: device → VLESS + Reality + Vision → VPS → website
+chain:  device → VLESS + Reality + Vision → entry VPS → authenticated SOCKS5/ISP exit → website
 ```
 
-Maintain one server inbound. Do not add a domain, Cloudflare, WS + TLS, a web panel, another protocol, or a client-side second chain unless the user explicitly changes scope after understanding the added cost and failure modes.
+The default server inbound is one `VLESS + Reality + Vision` entry and does not need a domain or Cloudflare. Choose direct first when a fixed foreign exit is not needed. Add an authenticated static SOCKS5/ISP exit only after the user confirms the extra cost and failure layer. A second VPS can be used as an exit or backup when the user explicitly accepts the extra maintenance.
 
 This Skill contains reusable product procedure. For an existing installation, read a user-supplied local context directory outside the repository before changing anything. Never copy that context, instance parameters, invoices, or credentials into Git.
 
@@ -33,7 +34,7 @@ Before technical work, establish all of the following:
 1. The user owns or has explicit authority over the VPS, proxy account, and client devices.
 2. The setup is for personal or otherwise authorized use that follows local law and vendor terms.
 3. No public endpoint, resale, scanning, attack, spam, fraud, traffic interception, platform-risk evasion, or credential collection is requested.
-4. The user accepts that a single chain fails when either the VPS or US exit fails.
+4. If a chain is selected, the user accepts that it has an extra failure point and that either hop can interrupt service.
 
 Stop out-of-scope capability work. You may still help shut down services, revoke credentials, or recover the user's server.
 
@@ -45,24 +46,25 @@ Stop out-of-scope capability work. You may still help shut down services, revoke
 - Generate QR codes locally and store them outside the repository.
 - If any credential appeared publicly, rotate it before continuing.
 
-Read [references/intake-and-gates.md](references/intake-and-gates.md) before collecting inputs or asking for approval.
+Read [references/intake-and-gates.md](references/intake-and-gates.md) before collecting inputs or asking for approval. Read [references/plan-selector.md](references/plan-selector.md) before recommending a provider or topology.
 
 ## Workflow
 
-### Stage 0: initialize
+### Stage 0: choose the plan and initialize
 
 1. Create a private local working directory outside the public repository for logs and generated credentials.
 2. Copy the non-secret project brief and execution-record templates.
-3. Confirm device type, location, lawful use, budget, billing preference, and whether a fixed US IP is actually needed.
-4. If the Agent uses an unofficial model gateway, run the capability and willingness check in the intake reference before connecting to a server.
+3. Ask one question at a time about location/ISP, target country, fixed-IP need, devices, UDP need, traffic volume, maintenance tolerance, budget, and billing preference.
+4. Compare direct VPS, entry-plus-static-SOCKS5/ISP, two-VPS, and backup-entry paths. Read [references/plan-selector.md](references/plan-selector.md) and [references/provider-matrix.md](references/provider-matrix.md). Give one recommended plan and one fallback; do not force a chain.
+5. If the Agent uses an unofficial model gateway, run the capability and willingness check in the intake reference before connecting to a server.
 
-### Stage 1: purchase the VPS
+### Stage 1: compare and purchase the VPS
 
-1. Navigate only to `bandwagonhost.com` or a URL the user independently verifies.
-2. Read the live checkout page. Confirm billing period, total, available Japan location, traffic limit, refund terms, and renewal behavior.
+1. Navigate only to a provider's official page. Common starting points are BandwagonHost, DMIT Tokyo, RackNerd, and Hetzner Cloud; read [references/provider-matrix.md](references/provider-matrix.md).
+2. Read the live checkout page. Confirm billing period, total, available location, traffic limit, refund terms, renewal behavior, IPv4 availability, and whether the route fits the user's location.
 3. Recalculate monthly cost from the live bill. Do not reuse historical prices.
 4. Stop before final purchase. The user accepts terms, completes verification, and pays.
-5. After activation, verify KiwiVM access, Japan location, public IPv4, OS, traffic reset date, and emergency console.
+5. After activation, verify the provider control panel, selected location, public IPv4, OS, traffic reset date, and recovery console. For BandwagonHost this includes KiwiVM.
 
 ### Stage 2: take over the VPS safely
 
@@ -85,10 +87,10 @@ Read [references/deployment-runbook.md](references/deployment-runbook.md) before
 6. Verify configuration syntax, service status, startup behavior, and listening port.
 7. Import the node on one client and prove the exit is the Japan VPS before adding the US exit.
 
-### Stage 4: purchase and test the US exit
+### Stage 4: purchase and test an optional exit
 
-1. Use `cliproxy.com` as the user's stated supplier. Read the live product page and confirm the exact plan before payment.
-2. Confirm long-term static allocation, United States location, SOCKS5 support, authentication method, expiry, traffic limits, concurrent-device policy, UDP capability, refund terms, and regional restrictions.
+1. If the selected plan has an exit, use the supplier the user selected. `cliproxy.com` is one starting point; alternatives and terminology are in [references/provider-matrix.md](references/provider-matrix.md). Read the live product page and confirm the exact plan before payment.
+2. Confirm static allocation, target location, SOCKS5 support, authentication method, expiry, traffic limits, concurrent-device policy, UDP capability, refund terms, KYC, acceptable-use and regional restrictions.
 3. Stop before payment. The user completes purchase and verification.
 4. Test the SOCKS5 account from the VPS using `scripts/test_socks5.sh`; the password remains hidden and the temporary curl configuration is removed on exit.
 
@@ -113,7 +115,7 @@ Read [references/client-and-acceptance.md](references/client-and-acceptance.md).
 
 ### Stage 7: accept and hand off
 
-1. Run every acceptance check in the client reference.
+1. Run every acceptance check in the client reference and [references/network-testing.md](references/network-testing.md).
 2. Reboot the VPS once with user approval, then repeat SSH, service, Japan-entry, and US-exit checks.
 3. Fill the non-secret execution record, renewal dates, restore path, pinned commit, hashes, versions, and remaining limits.
 4. Store generated credentials in the user's password manager or encrypted storage.

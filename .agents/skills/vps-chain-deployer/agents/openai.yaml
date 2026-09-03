@@ -1,9 +1,8 @@
 interface:
-  display_name: "VPS Chain Deployer"
-  short_description: "带普通用户安全完成个人 VPS 链式代理的购买、部署与验收"
+  display_name: "Self-hosted Network Deployer"
+  short_description: "按需求选择并安全完成个人自建节点的购买、部署与验收"
   brand_color: "#2563EB"
-  default_prompt: "Use $vps-chain-deployer to guide me one step at a time through an authorized personal VPS chain setup."
+  default_prompt: "Use $vps-chain-deployer to help me choose and complete an authorized personal self-hosted network setup one step at a time."
 
 policy:
   allow_implicit_invocation: true
-
