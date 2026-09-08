@@ -19,6 +19,12 @@ https://github.com/2dust/v2rayN/releases
 
 Start with the system proxy. TUN needs administrator permission and can change routing for all applications. Enable it only after a specific application fails to follow the system proxy and the user approves.
 
+## TV proxy compatibility
+
+When the user routes a TV through v2rayN, read [the maintained compatibility note](../../../../docs/known-compatibility.md) before changing client versions. Treat `7.23.2` as a user-observed, scenario-specific comparison point, not a universal pin. Record the OS, architecture, current v2rayN and core versions, TV connection method, and exact failure first. Back up the current client and configuration before any comparison test.
+
+The official `7.24.2` release warned that older built-in downloaders had a serious MITM risk. Prefer a currently maintained version. If the user accepts a temporary `7.23.2` comparison test, use only the official GitHub release asset, record its integrity evidence, avoid the built-in downloader, preserve rollback, and state that these precautions do not prove the old client is free of other vulnerabilities.
+
 ## Android with v2rayNG
 
 Official source:

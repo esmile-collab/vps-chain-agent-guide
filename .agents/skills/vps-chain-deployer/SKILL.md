@@ -22,6 +22,7 @@ This Skill contains reusable product procedure. For an existing installation, re
 
 - Speak in the user's language and explain only the current step.
 - Ask one question at a time when the answer requires the user.
+- When invoked from the README starter prompt, first report repository, web, local-terminal, and SSH capability, then ask only the first everyday-language question. Do not front-load the project manual or technical choices.
 - After every step report: `current stage`, `verified`, `unverified`, `next human action`, and `rollback point`.
 - Separate observations, current vendor documentation, and inference.
 - Do not claim completion until every acceptance gate passes.
@@ -55,7 +56,7 @@ Read [references/agent-bootstrap.md](references/agent-bootstrap.md), [references
 1. Create a private local working directory outside the public repository for logs and generated credentials.
 2. Copy the non-secret project brief and execution-record templates.
 3. Verify the local Agent can read this repository, run terminal commands, and use SSH. If the user has no Agent, pause and provide [docs/get-an-agent.md](../../../docs/get-an-agent.md).
-4. Ask one question at a time in this order: monthly budget, biggest worry (outage or slowness), normal activities, target country/fixed-IP need, devices, maintenance tolerance, and location/ISP. Use everyday language; the user can answer “I don't know.”
+4. Ask one question at a time in this order: monthly budget, biggest worry (outage or slowness), normal activities, target country/fixed-IP need, devices including any TV that must use the connection, maintenance tolerance, and location/ISP. Use everyday language; the user can answer “I don't know.”
 5. Research current provider pages and measurable route quality after collecting the needs. Read [references/plan-selector.md](references/plan-selector.md) and [references/provider-matrix.md](references/provider-matrix.md). Give one recommended plan and one fallback with sources, date, cost, limits, and the user's own actions; do not force a chain.
 6. If the Agent uses an unofficial model gateway, run the capability and willingness check in the intake reference before connecting to a server.
 

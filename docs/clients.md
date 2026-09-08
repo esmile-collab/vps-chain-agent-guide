@@ -18,6 +18,10 @@
 
 v2rayN 官方项目支持 Windows、Linux 和 macOS；v2rayNG 面向 Android；Hiddify 官方项目覆盖 Android、iOS、Windows、macOS 和 Linux，并声明支持 VLESS/Reality。具体版本对某种 Reality 参数的兼容性仍需在你的设备上验收。
 
+### 电视代理的版本提醒
+
+当前项目维护者的一套电视代理方案已知可用版本是 `v2rayN 7.23.2`。这是特殊场景的回退线索，普通用户无需主动安装旧版。由于官方后来披露过旧版内置下载器的安全风险，电视不能用时先让 Agent 按 [`known-compatibility.md`](known-compatibility.md) 记录现状、备份并做对照测试。
+
 ## 电脑端导入
 
 1. Agent 在本机生成或显示二维码，或把完整链接暂存到本机剪贴板。
@@ -38,7 +42,7 @@ Android 使用 v2rayNG 时，首次启动可能需要授予 VPN 权限；iPhone/
 
 ## 客户端故障判断
 
-- 导入失败：先更新到官方最新版本，再让 Agent 在本机重新生成链接；不要把链接发到聊天里排查。
+- 导入失败：先记录当前版本，再让 Agent 检查官方维护版本和 [`known-compatibility.md`](known-compatibility.md)；不要把链接发到聊天里排查。
 - 能连接但 IP 没变：确认启用了正确的配置和系统代理，检查应用是否绕过系统代理。
 - 浏览器能用、某个应用不能用：先记录该应用是否支持系统代理，再考虑 TUN。
 - Wi-Fi 能用、移动数据不能用：分别检查手机 VPN 权限和运营商网络，不要立即重建节点。
