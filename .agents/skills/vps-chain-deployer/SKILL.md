@@ -26,7 +26,7 @@ This Skill contains reusable product procedure. For an existing installation, re
 - After every step report: `current stage`, `verified`, `unverified`, `next human action`, and `rollback point`.
 - Separate observations, current vendor documentation, and inference.
 - Do not claim completion until every acceptance gate passes.
-- Keep an execution record using `../../../templates/execution-record.md` when working inside this repository. In a copied Skill, create an equivalent non-secret record.
+- Keep a private research record from `../../../templates/research-record.json` during product selection, then keep an execution record using `../../../templates/execution-record.md` after purchase. In a copied Skill, create equivalent non-secret records.
 
 ## Scope gate
 
@@ -47,24 +47,25 @@ Stop out-of-scope capability work. You may still help shut down services, revoke
 - Generate QR codes locally and store them outside the repository.
 - If any credential appeared publicly, rotate it before continuing.
 
-Read [references/agent-bootstrap.md](references/agent-bootstrap.md), [references/intake-and-gates.md](references/intake-and-gates.md), and [references/security-playbook.md](references/security-playbook.md) before collecting inputs or asking for approval. Read [references/plan-selector.md](references/plan-selector.md) before recommending a provider or topology.
+Read [references/agent-bootstrap.md](references/agent-bootstrap.md), [references/intake-and-gates.md](references/intake-and-gates.md), and [references/security-playbook.md](references/security-playbook.md) before collecting inputs or asking for approval. Read [references/plan-selector.md](references/plan-selector.md), [references/provider-matrix.md](references/provider-matrix.md), and [references/research-and-decision-gates.md](references/research-and-decision-gates.md) before recommending a provider or topology.
 
 ## Workflow
 
 ### Stage 0: choose the plan and initialize
 
 1. Create a private local working directory outside the public repository for logs and generated credentials.
-2. Copy the non-secret project brief and execution-record templates.
+2. Initialize a private research record outside the repository with `python3 scripts/research_gate.py init --topology <direct|chain> --output <private-path>/research-record.json`. Create it after the likely topology is clear; reinitialize it if the topology changes.
 3. Verify the local Agent can read this repository, run terminal commands, and use SSH. If the user has no Agent, pause and provide [docs/get-an-agent.md](../../../docs/get-an-agent.md).
 4. Ask one question at a time in this order: monthly budget, biggest worry (outage or slowness), normal activities, target country/fixed-IP need, devices including any TV that must use the connection, maintenance tolerance, and location/ISP. Use everyday language; the user can answer “I don't know.”
-5. Research current provider pages and measurable route quality after collecting the needs. Read [references/plan-selector.md](references/plan-selector.md) and [references/provider-matrix.md](references/provider-matrix.md). Give one recommended plan and one fallback with sources, date, cost, limits, and the user's own actions; do not force a chain.
-6. If the Agent uses an unofficial model gateway, run the capability and willingness check in the intake reference before connecting to a server.
+5. Research current provider pages and measurable route quality after collecting the needs. Store every source, timestamp, short original excerpt, structured conclusion, and unknown in the research record. Third-party pages can discover candidates; purchase facts must come from official pages or live tests.
+6. Run `python3 scripts/research_gate.py check <private-path>/research-record.json`. Only exit code `0` permits a direct recommendation. Exit code `2` requires the exact label `未验证`, the missing-evidence list, and the smallest next verification action. Give at most one recommendation and one fallback; do not force a chain.
+7. If the Agent uses an unofficial model gateway, run the capability and willingness check in the intake reference before connecting to a server.
 
 ### Stage 1: compare and purchase the VPS
 
 1. Navigate only to a provider's official page. Common starting points are BandwagonHost, DMIT Tokyo, RackNerd, and Hetzner Cloud; read [references/provider-matrix.md](references/provider-matrix.md).
-2. Read the live checkout page. Confirm billing period, total, available location, traffic limit, refund terms, renewal behavior, IPv4 availability, and whether the route fits the user's location.
-3. Recalculate monthly cost from the live bill. Do not reuse historical prices.
+2. Read the live checkout page. Confirm billing period, total, available location, traffic limit, refund terms, renewal behavior, IPv4 availability, and whether the route fits the user's location. Add the live evidence to the research record.
+3. Recalculate monthly cost from the live bill. Do not reuse historical prices. Re-run the research gate if the selected product, location, bill, renewal terms, or route evidence changes.
 4. Stop before final purchase. The user accepts terms, completes verification, and pays.
 5. After activation, verify the provider control panel, selected location, public IPv4, OS, traffic reset date, and recovery console. For BandwagonHost this includes KiwiVM.
 
@@ -94,7 +95,7 @@ Read [references/deployment-runbook.md](references/deployment-runbook.md) and [r
 ### Stage 4: purchase and test an optional exit
 
 1. If the selected plan has an exit, use the supplier the user selected. `cliproxy.com` is one starting point; alternatives and terminology are in [references/provider-matrix.md](references/provider-matrix.md). Read the live product page and confirm the exact plan before payment.
-2. Confirm static allocation, target location, SOCKS5 support, authentication method, expiry, traffic limits, concurrent-device policy, UDP capability, refund terms, KYC, acceptable-use and regional restrictions.
+2. Confirm static allocation, target location, SOCKS5 support, authentication method, expiry, traffic limits, concurrent-device policy, UDP capability, refund terms, KYC, acceptable-use and regional restrictions. Add the live evidence to the research record and run the gate before presenting this exit as a recommendation.
 3. Stop before payment. The user completes purchase and verification.
 4. Test the SOCKS5 account from the VPS using `scripts/test_socks5.sh`; the password remains hidden and the temporary curl configuration is removed on exit.
 

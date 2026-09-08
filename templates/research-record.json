@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "research_id": "replace-with-local-id",
+  "created_at": "2026-01-01T00:00:00+00:00",
+  "user_needs": {
+    "monthly_budget": "",
+    "first_payment_limit": "",
+    "location_and_isp": "",
+    "main_concern": "",
+    "use_cases": [],
+    "target_country_or_fixed_ip": "",
+    "devices": [],
+    "maintenance_tolerance": ""
+  },
+  "candidates": [
+    {
+      "id": "candidate-1",
+      "name": "",
+      "topology": "direct",
+      "cost_summary": "",
+      "components": [
+        {
+          "role": "entry_vps",
+          "provider": "",
+          "product": "",
+          "evidence": [
+            {
+              "claim_id": "checkout_price",
+              "status": "unverified",
+              "source_kind": "",
+              "source": "",
+              "checked_at": "",
+              "evidence_excerpt": "",
+              "value": {
+                "total_due": null,
+                "currency": null,
+                "tax_included": null
+              }
+            },
+            {
+              "claim_id": "billing_cycle",
+              "status": "unverified",
+              "source_kind": "",
+              "source": "",
+              "checked_at": "",
+              "evidence_excerpt": "",
+              "value": {
+                "months": null
+              }
+            },
+            {
+              "claim_id": "renewal_rule",
+              "status": "unverified",
+              "source_kind": "",
+              "source": "",
+              "checked_at": "",
+              "evidence_excerpt": "",
+              "value": {
+                "renewal_total": null,
+                "currency": null,
+                "auto_renewal": null
+              }
+            },
+            {
+              "claim_id": "location_stock",
+              "status": "unverified",
+              "source_kind": "",
+              "source": "",
+              "checked_at": "",
+              "evidence_excerpt": "",
+              "value": {
+                "location": null,
+                "available": null
+              }
+            },
+            {
+              "claim_id": "traffic_limit",
+              "status": "unverified",
+              "source_kind": "",
+              "source": "",
+              "checked_at": "",
+              "evidence_excerpt": "",
+              "value": ""
+            },
+            {
+              "claim_id": "ipv4_included",
+              "status": "unverified",
+              "source_kind": "",
+              "source": "",
+              "checked_at": "",
+              "evidence_excerpt": "",
+              "value": ""
+            },
+            {
+              "claim_id": "refund_rule",
+              "status": "unverified",
+              "source_kind": "",
+              "source": "",
+              "checked_at": "",
+              "evidence_excerpt": "",
+              "value": ""
+            },
+            {
+              "claim_id": "acceptable_use",
+              "status": "unverified",
+              "source_kind": "",
+              "source": "",
+              "checked_at": "",
+              "evidence_excerpt": "",
+              "value": ""
+            },
+            {
+              "claim_id": "route_test",
+              "status": "unverified",
+              "source_kind": "",
+              "source": "",
+              "checked_at": "",
+              "evidence_excerpt": "",
+              "value": {
+                "method": null,
+                "tested_from": null,
+                "target": null,
+                "time_window": null,
+                "latency_ms": null,
+                "packet_loss_pct": null
+              }
+            }
+          ]
+        }
+      ],
+      "unknowns": []
+    }
+  ],
+  "decision": {
+    "recommended_candidate_id": "",
+    "reason": ""
+  }
+}

@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import importlib.util
 import re
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 
 
@@ -89,12 +91,68 @@ def check_local_markdown_links() -> None:
         fail("broken local Markdown links:\n" + "\n".join(errors))
 
 
+def check_research_gate() -> None:
+    gate_path = SKILL_DIR / "scripts" / "research_gate.py"
+    spec = importlib.util.spec_from_file_location("research_gate", gate_path)
+    if spec is None or spec.loader is None:
+        fail("cannot load research_gate.py")
+    gate = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(gate)
+
+    record = gate.new_record("direct")
+    for key in record["user_needs"]:
+        record["user_needs"][key] = ["test"] if isinstance(record["user_needs"][key], list) else "test"
+    candidate = record["candidates"][0]
+    candidate["name"] = "test candidate"
+    candidate["cost_summary"] = "test total and monthly equivalent"
+    component = candidate["components"][0]
+    component["provider"] = "test provider"
+    component["product"] = "test product"
+    checked_at = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+    for item in component["evidence"]:
+        claim = item["claim_id"]
+        value = "test value"
+        if claim in gate.VALUE_FIELDS:
+            value = {field: "test" for field in gate.VALUE_FIELDS[claim]}
+            for field in ("total_due", "months", "renewal_total", "latency_ms", "packet_loss_pct"):
+                if field in value:
+                    value[field] = 1
+            for field in ("tax_included", "auto_renewal", "available"):
+                if field in value:
+                    value[field] = False
+        source_kind = "official_page"
+        if claim in {"checkout_price", "billing_cycle", "location_stock"}:
+            source_kind = "live_checkout"
+        if claim == "route_test":
+            source_kind = "network_test"
+        item.update({
+            "status": "verified",
+            "source_kind": source_kind,
+            "source": "local-test:route.txt" if claim == "route_test" else "https://example.com/",
+            "checked_at": checked_at,
+            "evidence_excerpt": "test evidence",
+            "value": value,
+        })
+    record["decision"] = {
+        "recommended_candidate_id": "candidate-1",
+        "reason": "test reason",
+    }
+    errors, missing = gate.evaluate(record)
+    if errors or missing:
+        fail(f"complete research record should pass: errors={errors}, missing={missing}")
+
+    component["evidence"][2]["status"] = "unverified"
+    _, missing = gate.evaluate(record)
+    if not any("renewal_rule" in item for item in missing):
+        fail("research gate must block an unverified renewal rule")
+
+
 def main() -> None:
     check_skill()
     check_local_markdown_links()
-    print("Skill metadata and local Markdown links are valid.")
+    check_research_gate()
+    print("Skill metadata, local Markdown links, and research gate are valid.")
 
 
 if __name__ == "__main__":
     main()
-

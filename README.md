@@ -12,7 +12,7 @@
 请读取并按照这个项目接手我的个人网络节点搭建：
 https://github.com/esmile-collab/vps-chain-agent-guide
 
-我可能完全不懂网络，也可能不知道自己需要什么。请先检查你是否具备仓库读取、网页查询、本机终端和服务器连接能力，然后一次只问我一个日常问题。先了解设备、用途、预算和当前困扰，再给我最多两个方案，并按仓库里的安全规则带我完成购买、部署、客户端配置、测试和交接。
+我可能完全不懂网络，也可能不知道自己需要什么。请先检查你是否具备仓库读取、网页查询、本机终端和服务器连接能力，然后一次只问我一个日常问题。先了解设备、用途、预算和当前困扰，再按仓库要求留下即时研究记录并运行推荐门槛；关键证据缺失时标记“未验证”。门槛通过后最多给我两个方案，并按安全规则带我完成购买、部署、客户端配置、测试和交接。
 ```
 
 完整启动指令见 [`docs/start-with-agent.md`](docs/start-with-agent.md)。电脑还没有 Agent，先看 [`docs/get-an-agent.md`](docs/get-an-agent.md)。
@@ -26,7 +26,7 @@ https://github.com/esmile-collab/vps-chain-agent-guide
 | 阶段 | Agent 交付 |
 | --- | --- |
 | 了解需求 | 用日常问题确认预算、设备、用途、稳定性和地区要求 |
-| 选择方案 | 调查当天可购买产品，给出一个推荐和一个备选，核算首次付款与续费 |
+| 选择方案 | 调查当天可购买产品，留下来源、原文和核验时间；硬门槛通过后才给推荐 |
 | 部署服务器 | 完成只读预检、备份、安装、配置和服务验证 |
 | 配置设备 | 指导 Windows、macOS、Linux、Android、iPhone、iPad 和电视使用 |
 | 安全与验收 | 检查密钥、端口、IP、DNS、延迟、丢包、速度和必要的 UDP 能力 |
@@ -81,9 +81,10 @@ Agent 会先判断单服务器能否满足需求。只有用户确实需要固�
 - [`.agents/skills/vps-chain-deployer/SKILL.md`](.agents/skills/vps-chain-deployer/SKILL.md)：完整的选购、部署、组链、客户端和验收流程。
 - [`.agents/skills/vps-chain-deployer/references/`](.agents/skills/vps-chain-deployer/references/)：按执行阶段提供供应商、部署、安全、测试和排障上下文。
 - [`.agents/skills/vps-chain-deployer/scripts/`](.agents/skills/vps-chain-deployer/scripts/)：服务器预检、安全复查、出口测试等确定性检查。
+- [`templates/research-record.json`](templates/research-record.json)：单次选购研究的非密钥记录结构。
 - [`templates/execution-record.md`](templates/execution-record.md)：不含密钥的执行和交付记录。
 
-Agent 先读取当前阶段需要的上下文，再执行对应检查。购买、重装、第三方脚本、防火墙、SSH、重启和设备全局网络等操作都设有人工确认门。
+Agent 先读取当前阶段需要的上下文，再执行对应检查。结账价格、续费、关键限制或线路实测缺失时，研究门槛会返回“未验证”，Agent 不能直接推荐。购买、重装、第三方脚本、防火墙、SSH、重启和设备全局网络等操作都设有人工确认门。
 
 ## 文档入口
 
@@ -91,7 +92,7 @@ Agent 先读取当前阶段需要的上下文，再执行对应检查。购买�
 
 - [`docs/start-with-agent.md`](docs/start-with-agent.md)：复制给 Agent 的完整启动指令
 - [`docs/choose-a-plan.md`](docs/choose-a-plan.md)：Agent 如何从日常问题判断用户需要什么
-- [`docs/providers.md`](docs/providers.md)：VPS、固定出口和价格参考
+- [`docs/providers.md`](docs/providers.md)：供应商来源、即时核验项和推荐门槛
 - [`docs/get-an-agent.md`](docs/get-an-agent.md)：Mac、Windows 从零安装 Agent
 - [`docs/human-steps.md`](docs/human-steps.md)：必须由用户完成的动作
 - [`docs/clients.md`](docs/clients.md)：电脑、手机和平板客户端
@@ -102,7 +103,8 @@ Agent 先读取当前阶段需要的上下文，再执行对应检查。购买�
 
 - [`deployment-runbook.md`](.agents/skills/vps-chain-deployer/references/deployment-runbook.md)：服务器部署步骤
 - [`plan-selector.md`](.agents/skills/vps-chain-deployer/references/plan-selector.md)：方案决策规则
-- [`provider-matrix.md`](.agents/skills/vps-chain-deployer/references/provider-matrix.md)：供应商判断字段
+- [`provider-matrix.md`](.agents/skills/vps-chain-deployer/references/provider-matrix.md)：供应商官网入口和必查项目注册表
+- [`research-and-decision-gates.md`](.agents/skills/vps-chain-deployer/references/research-and-decision-gates.md)：即时研究记录和推荐硬门槛
 - [`client-and-acceptance.md`](.agents/skills/vps-chain-deployer/references/client-and-acceptance.md)：客户端和验收门
 - [`security-playbook.md`](.agents/skills/vps-chain-deployer/references/security-playbook.md)：高风险操作与恢复流程
 - [`troubleshooting.md`](.agents/skills/vps-chain-deployer/references/troubleshooting.md)：分层排障路径

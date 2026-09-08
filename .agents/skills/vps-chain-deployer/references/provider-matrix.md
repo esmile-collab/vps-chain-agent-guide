@@ -1,33 +1,39 @@
-# 供应商核验矩阵（Agent 内部参考）
+# 供应商来源注册表（Agent 内部参考）
 
-价格和库存会变。以下链接用于从官网开始，执行时必须重新打开并记录账单，不得把示例价格当承诺。
+本表只保存稳定入口和必查项目，不保存套餐价格、库存结论或长期线路评价。所有动态信息进入本次 [研究记录](research-and-decision-gates.md)。
 
-第三方筛选入口：[DigVPS 测评总表](https://digvps.com/review)。它可用于发现商户、地区和测评状态；只把它当候选池，购买和条款核验必须回到商户官网。页面中的“已测评”和“未测评/仅收录”要分开理解。
+第三方发现入口：[DigVPS 测评总表](https://digvps.com/review)。它只用于发现候选和查看历史测评状态。购买、价格、续费、库存、产品能力和条款必须回到供应商官网核验。
 
-## VPS
+## VPS 来源
 
-| 供应商 | 官网入口 | 可作为的候选 | 现场核对 |
+| 供应商 | 官方产品/结账入口 | 官方条款/状态/测试入口 | 必查项目 |
 | --- | --- | --- | --- |
-| BandwagonHost | https://bandwagonhost.com/cart.php | 日本/亚洲入口、不同网络系列 | 实际机房、线路名称、账期、续费、流量、IPv4 |
-| DMIT Tokyo | https://www.dmit.io/pages/location/tokyo | 更看重亚洲路由质量的入口 | Tier 1/Premium 系列、东京库存、月付和续费、流量 |
-| RackNerd | https://www.racknerd.com/ | 低成本美国或欧洲出口、实验 | 机房国家、促销库存、IPv4、到用户 ISP 的实测路由 |
-| Hetzner Cloud | https://www.hetzner.com/cloud/ | 低价测试或自控出口 | 地区、计费单位、流量/带宽、IPv4、到用户 ISP 的实测路由 |
+| BandwagonHost | [购物车](https://bandwagonhost.com/cart.php) | [服务条款](https://bandwagonhost.com/knowledgebase/6/tos---terms-of-service.html)、[知识库](https://bandwagonhost.com/knowledgebase.php) | 产品系列、机房库存、本次付款、账期、续费与自动扣款、流量、IPv4、退款、用途限制、到用户网络的线路测试 |
+| DMIT | [Tokyo](https://www.dmit.io/pages/location/tokyo) | [服务条款](https://www.dmit.io/pages/tos)、[可接受用途](https://www.dmit.io/pages/aup) | 网络系列、机房库存、本次付款、账期、续费、流量、IPv4、退款、地区/KYC 限制、到用户网络的线路测试 |
+| RackNerd | [官网](https://www.racknerd.com/) | [服务条款](https://www.racknerd.com/terms-of-service)、[Looking Glass](https://lg-ash.racknerd.com/) | 促销是否仍可结账、机房、本次付款、账期、续费、流量、IPv4、退款、用途限制、用户本地晚高峰测试 |
+| Hetzner Cloud | [Cloud](https://www.hetzner.com/cloud/) | [服务条款](https://www.hetzner.com/legal/terms-and-conditions/)、[服务状态](https://status.hetzner.com/) | 地区库存、本次付款、计费单位、续费/销毁规则、流量、IPv4 附加费、退款、身份核验、到用户网络的线路测试 |
 
-## 固定 ISP/住宅出口
+官网没有公开 Looking Glass 时，先找官方测试 IP/下载文件或向售前索取。仍无法从用户所在网络实测，就把 `route_test` 保持 `unverified`，不能直接推荐。
 
-| 供应商 | 官网入口 | 现场核对 |
-| --- | --- | --- |
-| ClipProxy | https://cliproxy.com/ | static、目标国家、SOCKS5、认证、并发、流量、UDP、到期和地区条款 |
-| IPRoyal Static Residential | https://iproyal.com/pricing/static-residential-proxies/ | 独享/固定时长、SOCKS5/UDP、KYC、用途限制和续费 |
-| Decodo ISP | https://decodo.com/proxies/isp-proxies/pricing | IP 数量、最低月费、税费、固定性、带宽和地区 |
-| Bright Data ISP | https://brightdata.com/proxy-types/isp-proxies | 按 IP/流量计费、KYC、合同和可接受用途 |
+## 固定 ISP/住宅出口来源
 
-供应商所说的“住宅”“ISP”“静态”可能对应不同产品。让用户买一个最小规格先测，不要一次预付大量 IP。通过 IPinfo 查看 ASN/组织类型，连续数日复查固定性。
+| 供应商 | 官方产品入口 | 官方条款/帮助入口 | 必查项目 |
+| --- | --- | --- | --- |
+| ClipProxy | [官网](https://cliproxy.com/) | [FAQ](https://help.cliproxy.com/faq) | 产品是否长期静态、目标国家、独享性、SOCKS5 与认证、并发、流量、UDP、到期/续费、退款、KYC、用途和地区限制、从入口 VPS 的实测 |
+| IPRoyal | [Static Residential](https://iproyal.com/pricing/static-residential-proxies/) | [服务条款](https://iproyal.com/terms-of-service/)、[订阅条款](https://iproyal.com/subscription-terms/) | 独享性、固定时长、本次付款、账期、续费、SOCKS5、UDP、并发、流量、退款、KYC、用途限制、从入口 VPS 的实测 |
+| Decodo | [ISP 产品页](https://decodo.com/proxies/isp-proxies/pricing) | 从产品页页脚进入当前条款 | 最低购买量、本次付款、税费、续费、固定性、带宽、认证、并发、UDP、KYC、用途限制、从入口 VPS 的实测 |
+| Bright Data | [ISP 产品页](https://brightdata.com/proxy-types/isp-proxies) | 从产品页页脚进入当前条款 | 最低购买量、按 IP/流量计费、本次付款、续费、KYC、合同、地区和用途限制、认证、并发、UDP、从入口 VPS 的实测 |
 
-## 付款前检查清单
+供应商使用的“住宅”“ISP”“静态”可能指向不同产品。先买最小规格；购买后核验 ASN/组织类型并连续复查固定性。宣传中的“保证解锁”“永不封禁”“100% 家宽”没有可验证条款时，写入阻断性未确认项。
 
-1. URL 的域名与供应商名称一致，HTTPS 正常。
-2. 记录一次性费用、续费费用、税费、退款窗口和自动续费。
-3. 记录位置、IPv4/IPv6、流量、端口、并发和 UDP/TCP 能力。
-4. 记录账号交付方式；密码由用户在供应商页面查看，Agent 不接收。
-5. 对“保证解锁、永不封禁、100% 家宽”之类宣传要求书面条款或标记为未验证。
+## 所有候选的必查证据
+
+1. 官网域名、具体产品和可购买库存。
+2. 结账页本次实际付款、币种、税费和账期。
+3. 续费金额、续费周期、是否自动续费、取消方式。
+4. 地区、IPv4/IPv6、流量/FUP、端口、并发和 TCP/UDP 能力。
+5. 退款窗口、换 IP/迁移规则、KYC、可接受用途和地区限制。
+6. 从用户实际网络到入口的测试；链式方案再测入口到出口。
+7. 来源 URL、含时区核验时间、短原文或打码测试摘录、仍未确认项。
+
+任何一项缺失时，按 [即时研究与推荐门槛](research-and-decision-gates.md) 输出“未验证”。
