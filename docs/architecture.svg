@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="912" viewBox="0 0 960 912" role="img" aria-labelledby="title desc" lang="zh">
+<title id="title">VPS 搭建 Agent：系统架构与反馈闭环</title>
+<desc id="desc">把部署、验收、排障和回退整理成可复查的流程。需求与授权：预算 · 设备 · 用途；方案研究与门槛：现时证据 · 费用；部署与设备配置：预检 · 部署 · 配置；测试与验收：连通 · 安全 · 复测；故障证据与限制：失败层级 · 版本现象；分层排障与回退：恢复后逐项修改；交接记录与已知问题：测试结果 · 版本 · 回退点 · 兼容性限制；验收与交接：复测结果 · 恢复入口。Skill 规定流程；Agent 执行检查，高风险修改由用户确认。 出现失败先恢复已验证层；凭据和具体实例记录保留在仓库外。</desc>
+<metadata>Source revision: 28203c6a266e1e4b71075e4f14eb57e43716108d. Editable source: this SVG. Evidence and maintenance: docs/architecture.md.</metadata>
+<defs><marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M 0 1 L 9 5 L 0 9" fill="none" stroke="#64748b" stroke-width="1.8"/></marker><marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M 0 1 L 9 5 L 0 9" fill="none" stroke="#2563eb" stroke-width="1.8"/></marker></defs>
+<rect width="960" height="912" fill="#f8fafc"/>
+<g font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, Microsoft YaHei, sans-serif">
+<text x="48" y="58" font-size="40" fill="#172033" text-anchor="start" font-weight="600">VPS 搭建 Agent</text>
+<text x="48" y="102" font-size="24" fill="#475569" text-anchor="start" font-weight="400">把部署、验收、排障和回退整理成可复查的流程</text>
+<text x="48" y="148" font-size="20" fill="#526174" text-anchor="start" font-weight="400">执行与上下文</text>
+<path d="M 288 232 H 354" fill="none" stroke="#64748b" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#gray)"/>
+<path d="M 600 232 H 666" fill="none" stroke="#64748b" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#gray)"/>
+<path d="M 792 292 V 414" fill="none" stroke="#64748b" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#gray)"/>
+<path d="M 672 480 H 606" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#blue)"/>
+<path d="M 360 480 H 294" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#blue)"/>
+<path d="M 168 420 V 342 H 720 V 298" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#blue)" stroke-dasharray="8 6"/>
+<text x="324" y="329" font-size="20" fill="#2563eb" text-anchor="start" font-weight="400">确认后修改并重新验收</text>
+<path d="M 792 540 V 676" fill="none" stroke="#64748b" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#gray)"/>
+<text x="807" y="610" font-size="19" fill="#526174" text-anchor="start" font-weight="400">验收通过</text>
+<path d="M 480 540 V 676" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#blue)" stroke-dasharray="8 6"/>
+<text x="495" y="609" font-size="19" fill="#2563eb" text-anchor="start" font-weight="400">记录原因与限制</text>
+<path d="M 168 682 V 546" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#blue)" stroke-dasharray="8 6"/>
+<text x="183" y="609" font-size="19" fill="#2563eb" text-anchor="start" font-weight="400">后续排障复用</text>
+<g><rect x="48" y="172" width="240" height="120" rx="12" fill="#ffffff" stroke="#cbd5e1"/>
+<text x="168.0" y="210" font-size="32" fill="#172033" text-anchor="middle" font-weight="600">需求与授权</text>
+<text x="168.0" y="244" font-size="22" fill="#334155" text-anchor="middle" font-weight="400">预算 · 设备 · 用途</text>
+<text x="168.0" y="273" font-size="16" fill="#526174" text-anchor="middle" font-weight="400">用户输入 / 所有权确认</text>
+</g>
+<g><rect x="360" y="172" width="240" height="120" rx="12" fill="#ffffff" stroke="#cbd5e1"/>
+<text x="480.0" y="210" font-size="32" fill="#172033" text-anchor="middle" font-weight="600">方案研究与门槛</text>
+<text x="480.0" y="244" font-size="22" fill="#334155" text-anchor="middle" font-weight="400">现时证据 · 费用</text>
+<text x="480.0" y="273" font-size="16" fill="#526174" text-anchor="middle" font-weight="400">research_gate.py</text>
+</g>
+<g><rect x="672" y="172" width="240" height="120" rx="12" fill="#ffffff" stroke="#cbd5e1"/>
+<text x="792.0" y="210" font-size="32" fill="#172033" text-anchor="middle" font-weight="600">部署与设备配置</text>
+<text x="792.0" y="244" font-size="22" fill="#334155" text-anchor="middle" font-weight="400">预检 · 部署 · 配置</text>
+<text x="792.0" y="273" font-size="16" fill="#526174" text-anchor="middle" font-weight="400">Agent 按 Skill 执行</text>
+</g>
+<g><rect x="672" y="420" width="240" height="120" rx="12" fill="#eff6ff" stroke="#b7cdf8"/>
+<text x="792.0" y="458" font-size="32" fill="#172033" text-anchor="middle" font-weight="600">测试与验收</text>
+<text x="792.0" y="492" font-size="22" fill="#334155" text-anchor="middle" font-weight="400">连通 · 安全 · 复测</text>
+<text x="792.0" y="521" font-size="16" fill="#526174" text-anchor="middle" font-weight="400">检查脚本 + 真实设备</text>
+</g>
+<g><rect x="360" y="420" width="240" height="120" rx="12" fill="#eff6ff" stroke="#b7cdf8"/>
+<text x="480.0" y="458" font-size="32" fill="#172033" text-anchor="middle" font-weight="600">故障证据与限制</text>
+<text x="480.0" y="492" font-size="22" fill="#334155" text-anchor="middle" font-weight="400">失败层级 · 版本现象</text>
+<text x="480.0" y="521" font-size="16" fill="#526174" text-anchor="middle" font-weight="400">执行记录 / 本地日志</text>
+</g>
+<g><rect x="48" y="420" width="240" height="120" rx="12" fill="#eff6ff" stroke="#b7cdf8"/>
+<text x="168.0" y="458" font-size="32" fill="#172033" text-anchor="middle" font-weight="600">分层排障与回退</text>
+<text x="168.0" y="492" font-size="22" fill="#334155" text-anchor="middle" font-weight="400">恢复后逐项修改</text>
+<text x="168.0" y="521" font-size="16" fill="#526174" text-anchor="middle" font-weight="400">troubleshooting.md</text>
+</g>
+<g><rect x="48" y="682" width="552" height="120" rx="12" fill="#ffffff" stroke="#cbd5e1"/>
+<text x="324.0" y="720" font-size="30" fill="#172033" text-anchor="middle" font-weight="600">交接记录与已知问题</text>
+<text x="324.0" y="754" font-size="22" fill="#334155" text-anchor="middle" font-weight="400">测试结果 · 版本 · 回退点 · 兼容性限制</text>
+<text x="324.0" y="783" font-size="19" fill="#526174" text-anchor="middle" font-weight="400">实例记录留在私有目录；通用结论经复核后更新文档</text>
+</g>
+<g><rect x="672" y="682" width="240" height="120" rx="12" fill="#ffffff" stroke="#cbd5e1"/>
+<text x="792.0" y="720" font-size="32" fill="#172033" text-anchor="middle" font-weight="600">验收与交接</text>
+<text x="792.0" y="754" font-size="22" fill="#334155" text-anchor="middle" font-weight="400">复测结果 · 恢复入口</text>
+<text x="792.0" y="783" font-size="16" fill="#526174" text-anchor="middle" font-weight="400">已验证项 / 仍待处理项</text>
+</g>
+<line x1="48" y1="840" x2="94" y2="840" stroke="#64748b" stroke-width="2.5"/>
+<text x="108" y="846" font-size="18" fill="#475569" text-anchor="start" font-weight="400">已有代码 / Skill 流程</text>
+<line x1="410" y1="840" x2="456" y2="840" stroke="#2563eb" stroke-width="2.5" stroke-dasharray="8 6"/>
+<text x="470" y="846" font-size="18" fill="#475569" text-anchor="start" font-weight="400">人工处理 / 再次发起</text>
+<text x="48" y="875" font-size="20" fill="#475569" text-anchor="start" font-weight="400">Skill 规定流程；Agent 执行检查，高风险修改由用户确认。</text>
+<text x="48" y="900" font-size="20" fill="#475569" text-anchor="start" font-weight="400">出现失败先恢复已验证层；凭据和具体实例记录保留在仓库外。</text>
+</g></svg>
