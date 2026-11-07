@@ -1,30 +1,26 @@
-# VPS 搭建 Agent：架构图依据与维护
+# 模块协作架构：依据与维护
 
-核对日期：2026-11-07。代码 / 文档基线：`28203c6a266e1e4b71075e4f14eb57e43716108d`。
+核对日期：2026-11-07。代码 / 文档基线：`36babe1d567a66a943686ae3ee333fd21ffd03ae`。
 
-## 图源
+## 图源与读法
 
-`architecture.svg` 是可编辑图源，README 直接展示。图中没有脚本、动画、外部字体或图片依赖。
-实线表示已有代码关系或仓库规定的 Skill 流程；虚线表示人工处理、人工维护或下一次发起。蓝色突出评测问题和反馈回路。
+`architecture.svg` 是可编辑图源，README 直接展示；英文版本存在时同步维护。图片无动画、脚本、外部字体或图片依赖。
+块表示可定位的代码职责、Skill、文档或数据资源；块内只保留模块名、职责或接口。连线标注传递的数据或调用内容，双向箭头表示调用 / 读取与结果返回。蓝线突出评测与回读，虚线仅表示人工修订。
+图按当前实现分组，不据此宣称所有模块已完全解耦。现有依赖与直接访问路径保留在图和下表中。
 
-## 模块与证据
+## 模块与协作依据
 
-| 图中关系 | 对应文件 | 已核对的范围 |
+| 模块 | 对应文件 | 接口与边界 |
 | --- | --- | --- |
-| 总体执行与失败路由 | [.agents/skills/vps-chain-deployer/SKILL.md](../.agents/skills/vps-chain-deployer/SKILL.md) | 已有 Skill 流程，按阶段验收；失败后分层排障并恢复已验证层。 |
-| 方案证据门槛 | [.agents/skills/vps-chain-deployer/scripts/research_gate.py](../.agents/skills/vps-chain-deployer/scripts/research_gate.py) | 证据缺失返回未验证；不凭历史价格或未核对线路直接给推荐。 |
-| 纠错与回退 | [.agents/skills/vps-chain-deployer/references/troubleshooting.md](../.agents/skills/vps-chain-deployer/references/troubleshooting.md) | 收集证据、恢复上个已验证层、一次改一个变量；高风险操作按授权规则执行。 |
-| 问题沉淀与交付 | [templates/execution-record.md](../templates/execution-record.md) | 记录验收、版本、回退与仍待处理项；具体实例与凭据留在私有目录。 |
-| 可复用兼容性经验 | [docs/known-compatibility.md](../docs/known-compatibility.md) | 通用问题经复核后由维护者更新，不能将个别版本表现扩展为全部版本结论。 |
-
-## 当前边界
-
-- Skill 规定流程；Agent 执行检查，高风险修改由用户确认。
-- 出现失败先恢复已验证层；凭据和具体实例记录保留在仓库外。
-- 本次只核对仓库流程，没有连接或修改任何服务器。
-- 通用经验经复核后维护到文档；具体实例记录不进入公开 Git。
+| 宿主 Agent 与部署 Skill | [.agents/skills/vps-chain-deployer/SKILL.md](../.agents/skills/vps-chain-deployer/SKILL.md) | Agent 读取规则、执行命令、调用检查脚本并判断结果；Skill 规定选型、执行、失败路由与授权边界。 |
+| 选型校验 | [.agents/skills/vps-chain-deployer/scripts/research_gate.py](../.agents/skills/vps-chain-deployer/scripts/research_gate.py) | 读取私有研究记录并检查证据与推荐条件；输出 READY、UNVERIFIED 或格式错误。 |
+| 操作手册 | [.agents/skills/vps-chain-deployer/references/troubleshooting.md](../.agents/skills/vps-chain-deployer/references/troubleshooting.md) | 提供部署、分层排障与回退依据；由 Agent 阅读后执行，不将文档画成独立自动修复服务。 |
+| 检查脚本 | [.agents/skills/vps-chain-deployer/scripts/security_postcheck.sh](../.agents/skills/vps-chain-deployer/scripts/security_postcheck.sh) | 与 preflight、SOCKS5 测试等脚本分别完成确定性检查，在授权环境采集结果返回 Agent。 |
+| 私有记录 | [templates/execution-record.md](../templates/execution-record.md) | 保存研究、验收与问题信息，供 Agent 回看与恢复；具体实例与凭据不进入公开 Git。 |
+| 规则维护 | [docs/known-compatibility.md](../docs/known-compatibility.md) | 通用问题经复核后更新规则或兼容记录，图中以人工修订虚线表示。 |
 
 ## 随代码维护
 
-输入输出、模块调用、评测门槛、记录位置或反馈路径变化时，在同一提交内更新 SVG、对应 README 与本文件。人工环节保留虚线；只有代码已经实现自动执行后才改为实线。
-直接编辑 SVG 中的文字、节点与路径，保持全部信息默认可见。英文图存在时同步更新。提交前检查 XML 能解析、文字与箭头不重叠、README 图片路径有效，且图中每条回流都有代码或现有流程依据。
+模块职责、调用方、输入输出、共享校验、持久化或回流方式变化时，在同一提交中更新 SVG、README 和本文。不要将人工操作写成自动模块，也不要删除仍然存在的耦合关系。
+图中文字采用短名词和短职责；具体路径与限制留在本文。连线优先写接口内容，例如脚本请求、分镜、快照和运行记录。
+提交前检查 XML 解析、文字边界、连线与节点、README 引用以及静态资源大小。代码行为没有变化时无需为图增加运行依赖。

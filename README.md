@@ -6,10 +6,9 @@
 
 ## 系统架构
 
-![系统架构：执行、评测、问题沉淀与二次修改](docs/architecture.svg)
+![系统架构：模块职责、接口协作与评测回路](docs/architecture.svg)
 
 [图源、实现边界与维护](docs/architecture.md)
-
 
 ## 直接交给 Agent
 
